@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <span *ngIf="submitted">Username or password is incorrect</span>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ion-item lines="full">
+      <ion-label position="floating" >UserName</ion-label>
+      <ion-input type="text"  formControlName="username" required></ion-input>
+      <p *ngIf="data.username.errors?.required">Username is required</p>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password" required></ion-input>
+      <p *ngIf="data.password.errors?.required">Password is required</p>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <a  [routerLink]="['/register']" class="small-text">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
